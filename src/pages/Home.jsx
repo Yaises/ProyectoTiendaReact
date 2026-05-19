@@ -11,8 +11,7 @@ export default function Home() {
   const [loadingMore, setLoadingMore] = useState(false)
   const [error, setError] = useState('')
   const [selectedProduct, setSelectedProduct] = useState(null)
-  const [searchText, setSearchText] = useState('')
-
+  
   useEffect(() => {
     loadProducts(0, true)
   }, [])
@@ -49,7 +48,6 @@ export default function Home() {
     return <ProductDetail product={selectedProduct} onBack={() => setSelectedProduct(null)} />
   }
 
-
   return (
     <div className="page-home">
       <h1 className="page-title">Todos los productos</h1>
@@ -60,9 +58,8 @@ export default function Home() {
         <div className="loading-msg">Cargando productos...</div>
       ) : (
         <>
-
           <div className="products-grid">
-            {filteredProducts.map(product => (
+            {products.map(product => (
               <ProductCard
                 key={product.id}
                 product={product}
@@ -71,7 +68,7 @@ export default function Home() {
             ))}
           </div>
 
-          {filteredProducts.length === 0 && (
+          {products.length === 0 && (
             <p className="empty-msg">No hay productos que coincidan con la busqueda.</p>
           )}
 
